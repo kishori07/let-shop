@@ -1,0 +1,18 @@
+.item{
+
+    float: right;
+    margin-top: 5px;
+    padding: 5px;
+    position: relative;
+    
+}
+.item-shape{
+     float: right;
+    margin-top: 15px;
+    padding: 5px;
+    position: relative;
+    /* background-color: aliceblue; */
+}
+.fa{
+    color:#fff;
+}

@@ -1,0 +1,94 @@
+<div class="signup-form">
+  <form [formGroup]="signUp" (ngSubmit)="onSubmit()" class="form-horizontal">
+    <div class="row">
+      <div class="col-8 offset-4">
+        <h2>Sign Up</h2>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Username</label>
+      <div class="col-8">
+        <input type="text" class="form-control" formControlName="name" maxlength="30" />
+      </div>
+      <div *ngIf="sfc.name.touched && sfc.name.errors" class="text-danger">
+        <span *ngIf="sfc.name.errors.required"> *Name is required </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Mobile No.</label>
+      <div class="col-8">
+        <input type="text" class="form-control" maxlength="10" formControlName="mobileno" />
+      </div>
+      <div *ngIf="sfc.mobileno.touched && sfc.mobileno.errors" class="text-danger">
+        <span *ngIf="sfc.mobileno.errors.required">
+          *MobileNo. is required
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Email Address</label>
+      <div class="col-8">
+        <input type="email" class="form-control" maxlength="20" formControlName="email" />
+      </div>
+      <div *ngIf="sfc.email.touched && sfc.email.errors" class="text-danger">
+        <span *ngIf="sfc.email.errors.required"> *Email is required </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Address</label>
+      <div class="col-8">
+        <input type="text" class="form-control" formControlName="address" />
+      </div>
+      <div *ngIf="sfc.address.touched && sfc.address.errors" class="text-danger">
+        <span *ngIf="sfc.address.errors.required">
+          *Residencial Address is required
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Password</label>
+      <div class="col-8">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+      </div>
+      <div *ngIf="sfc.password.touched && sfc.password.errors " class="text-danger">
+        <span *ngIf="sfc.password.errors.required">
+          *Password is required
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-form-label col-4">Confirm Password</label>
+      <div class="col-8">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="cpassword"
+        />
+      </div>
+      <div *ngIf="sfc.cpassword.touched && sfc.cpassword.errors" class="text-danger">
+        <span *ngIf="sfc.cpassword.errors.required">
+          *Password is required
+        </span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-8 offset-4">
+        <p>
+          <label class="form-check-label"
+            ><input type="checkbox" required="required" /> I accept the
+            <a href="#">Terms of Use</a> &amp;
+            <a href="#">Privacy Policy</a>.</label
+          >
+        </p>
+        <button type="submit" class="btn btn-primary btn-lg" [disabled]="!signUp.valid" >Sign Up</button>
+      </div>
+    </div>
+  </form>
+  <div class="text-center">
+    Already have an account? <a routerLink="/login"> Login here</a>
+  </div>
+</div>

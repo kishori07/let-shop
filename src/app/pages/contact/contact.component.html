@@ -1,0 +1,65 @@
+<div class="site-branding-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 50px;">
+                <img src="../../../assets/img/contact-us-1.png" width="100%">
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form [formGroup]="contactForm" (ngSubmit)="ContactForms()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Full Name</label>
+                        <div>
+                            <input placeholder="Full Name" type="text" class="form-control" formControlName="name"
+                                maxlength="40" aria-describedby="emailHelp" />
+                        </div>
+                        <div *ngIf="cfs.name.touched && cfs.name.errors" class="text-danger">
+                            <span *ngIf="cfs.name.errors.required"> *Name is required </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Mobile</label>
+                        <div>
+                            <input placeholder="Mobile No." type="text" class="form-control" formControlName="mobile"
+                                maxlength="10" aria-describedby="emailHelp" />
+                        </div>
+                        <div *ngIf="cfs.mobile.touched && cfs.mobile.errors" class="text-danger">
+                            <span *ngIf="cfs.mobile.errors.required"> *Mobile is required </span>
+                             <span *ngIf="cfs.mobile.errors.minlength"  > *10 digits are required </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email Address </label>
+                        <div>
+                            <input placeholder="Email Address" type="text" class="form-control" formControlName="email"
+                                maxlength="30" aria-describedby="emailHelp" />
+                        </div>
+                        <div *ngIf="cfs.email.touched && cfs.email.errors" class="text-danger">
+                            <span *ngIf="cfs.email.errors.required"> *Email is required </span>
+                            <span *ngIf="cfs.email.errors.email"> *Invalid email </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Address</label>
+                        <textarea class="form-control" placeholder="Full Address" formControlName="address" placeholder="Full Address"></textarea>
+                        <div *ngIf="cfs.address.touched && cfs.address.errors" class="text-danger">
+                            <span *ngIf="cfs.address.errors.required"> *Address is required </span>
+                            
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Send</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d229.99770681108632!2d75.86493106443069!3d22.72960509488682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1627974471341!5m2!1sen!2sin"
+                    width="100%" height="450" style="border-radius:5px; border:solid 4px #000;padding: 10px;"
+                    allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

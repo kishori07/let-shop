@@ -1,0 +1,423 @@
+
+<div class="container col-xl-9 col-lg-9 col-md-9 col-sm-9 mx-auto">
+  <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+    <mat-horizontal-stepper [linear]="true" #stepper class="materila-card" (selectionChange)="onChangeTab($event)"
+      [selectedIndex]="tabIndex">
+      <mat-step [completed]="isCompleted_gf">
+        <ng-template matStepLabel>General Details</ng-template>
+        <!-- <mat-tab label="General"> -->
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">General</h2>
+        <form [formGroup]="generalForm" (ngSubmit)="OnSubmitGeneralform()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Brand </label>
+            <input type="text" class="form-control validate" formControlName="brand" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Model </label>
+            <input type="text" class="form-control validate" formControlName="model" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Price In India </label>
+            <input type="text" class="form-control validate" formControlName="priceInIndia" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Release Date </label>
+            <input type="text" class="form-control validate" formControlName="releaseDate" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Form factor </label>
+            <input type="text" class="form-control validate" formControlName="formFactor" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Dimension </label>
+            <input type="text" class="form-control validate" formControlName="dimension" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Weight </label>
+            <input type="text" class="form-control validate" formControlName="weight" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Battery Capacity </label>
+            <input type="text" class="form-control validate" formControlName="batteryCapacity" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Fast Charging </label>
+            <input type="text" class="form-control validate" formControlName="fastCharging" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Wireless Charging </label>
+            <input type="text" class="form-control validate" formControlName="wirelessCharging" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Colors </label>
+            <input type="text" class="form-control validate" formControlName="colors" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_gf && generalForm.invalid)
+                        ">
+              {{ errMsg_gf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_df">
+        <ng-template matStepLabel>Display Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Display </h2>
+        <form [formGroup]="displayForm" (ngSubmit)="OnSubmitDisplayForm()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Screen Size </label>
+            <input type="text" class="form-control validate" formControlName="screenSize" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">TouchScreen </label>
+            <input type="text" class="form-control validate" formControlName="touchScreen" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Resolution </label>
+            <input type="text" class="form-control validate" formControlName="resolution" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_df && displayForm.invalid)
+                        ">
+              {{ errMsg_df }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_hf ">
+        <ng-template matStepLabel>Hardware Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Hardware </h2>
+        <form [formGroup]="hardwareForm" (ngSubmit)="onSubmitHardwareForm()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Processor </label>
+            <input type="text" class="form-control validate" formControlName="processor" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Processor Make </label>
+            <input type="text" class="form-control validate" formControlName="processorMake" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">RAM </label>
+            <input type="text" class="form-control validate" formControlName="ram" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Internal Storage </label>
+            <input type="text" class="form-control validate" formControlName="internalStorage" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Expandable Storage </label>
+            <input type="text" class="form-control validate" formControlName="expandableStorage" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Expandable Type </label>
+            <input type="text" class="form-control validate" formControlName="expandableType" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Dedicated Micro Slot </label>
+            <input type="text" class="form-control validate" formControlName="dedicatedMicroSDslot" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_hf && hardwareForm.invalid)
+                        ">
+              {{ errMsg_hf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_cf">
+        <ng-template matStepLabel>Camera Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Camera </h2>
+        <form [formGroup]="cameraForm" (ngSubmit)="onSubmitCameraForm()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Rear Camera </label>
+            <input type="text" class="form-control validate" formControlName="rearCamera" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">No. of Rare camera </label>
+            <input type="text" class="form-control validate" formControlName="noOfRearCam" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Rear AutoFocus </label>
+            <input type="text" class="form-control validate" formControlName="rearAutofocus" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Rear Flash </label>
+            <input type="text" class="form-control validate" formControlName="rearFlash" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Front Camera </label>
+            <input type="text" class="form-control validate" formControlName="frontCamera" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">No. of Front Camera </label>
+            <input type="text" class="form-control validate" formControlName="npOfFrontCamera" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">pop-up Camera </label>
+            <input type="text" class="form-control validate" formControlName="popUpCamera" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_cf && cameraForm.invalid)
+                        ">
+              {{ errMsg_cf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_sf">
+        <ng-template matStepLabel>Software Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Software </h2>
+        <form [formGroup]="softwareForm" (ngSubmit)="onSubmitSoftwareForm()" >
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Operating System </label>
+            <input type="text" class="form-control validate" formControlName="Op" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Skin </label>
+            <input type="text" class="form-control validate" formControlName="skin" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_sf && softwareForm.invalid)
+                        ">
+              {{ errMsg_sf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_conf">
+        <ng-template matStepLabel>Connectivity Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Connectivity </h2>
+        <form [formGroup]="connectivityForm" (ngSubmit)="onSubmitConectivityForm()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Wifi </label>
+            <input type="text" class="form-control validate" formControlName="wifi" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">GPS </label>
+            <input type="text" class="form-control validate" formControlName="gps" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Bluetooth </label>
+            <input type="text" class="form-control validate" formControlName="bT" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">USB Type </label>
+            <input type="text" class="form-control validate" formControlName="usbType" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Micro-USB </label>
+            <input type="text" class="form-control validate" formControlName="microUSb" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Lighting </label>
+            <input type="text" class="form-control validate" formControlName="lighting" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Headphones </label>
+            <input type="text" class="form-control validate" formControlName="headphones" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">No. of Headphones </label>
+            <input type="text" class="form-control validate" formControlName="noOfSims" />
+          </div>
+           <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">No. of SIM Card </label>
+            <input type="text" class="form-control validate" formControlName="noOfSims" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Active 4G on Both SIM Card </label>
+            <input type="text" class="form-control validate" formControlName="Active4gOnBothSim" />
+          </div>
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">SIM Type </label>
+            <input type="text" class="form-control validate" formControlName="simType" />
+          </div>
+          <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_conf && connectivityForm.invalid)
+                        ">
+              {{ errMsg_conf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+        </form>
+      </mat-step>
+      <mat-step [completed]="isCompleted_senf">
+        <ng-template matStepLabel>Sensor Details</ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Sensor </h2>
+       <form [formGroup]="sensorsForm" (ngSubmit)="onSubmitSensorForm()">
+          <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">In-Display FingerPrint Sensor </label>
+            <input type="text" class="form-control validate" formControlName="fingerPrintSensor" />
+          </div>
+           <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Proximity Sensor </label>
+            <input type="text" class="form-control validate" formControlName="proximitySensor" />
+          </div>
+           <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Accelerometer </label>
+            <input type="text" class="form-control validate" formControlName="accelerometer" />
+          </div>
+           <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Ambient Light Sensor </label>
+            <input type="text" class="form-control validate" formControlName="ambientLight" />
+          </div>
+           <div class="form-group mb-2 col-xs-3 col-sm-3">
+            <label class="mtk" for="name">Gyroscope </label>
+            <input type="text" class="form-control validate" formControlName="gyroscope" />
+          </div>
+         <div class="col-md-6">
+            <div class="col-md-12 text-error text-left " style="color:white" *ngIf="
+                          (errMsg_senf && sensorsForm.invalid)
+                        ">
+              {{ errMsg_senf }}
+            </div>
+          </div>
+          <button style="float: right;" type="submit" class="btn btn-default">
+            Submit
+          </button>
+       </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>product </ng-template>
+        <h2 style="text-align: center;background-color: coral; color: aliceblue; font-size: large;">Product </h2>
+        <form [formGroup]="productForm" (ngSubmit)="onSubmitProductForm()">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+              <div class="form-group mb-2 col-xs-3 col-sm-3">
+                <label class="mtk" for="name">Select Category </label>
+                <select class="mtk" class="form-control" formControlName="category" required>
+                  <option value="1">Mobile </option>
+                  <option value="2">Television </option>
+                  <option value="3">Laptop </option>
+
+                </select>
+                <!-- <input
+              type="text"
+              class="form-control validate"
+              formControlName="category"
+              required
+            /> -->
+                <div *ngIf="pfc.category.touched && pfc.category.errors">
+                  <span class="mtk" *ngIf="pfc.category.errors.required">
+                    *Name is required</span>
+                </div>
+              </div>
+              <div class="form-group mb-2 col-xs-3 col-sm-3">
+                <label class="mtk" for="name">Product Id </label>
+                <input type="text" class="form-control validate" formControlName="productId" />
+                <div *ngIf="pfc.productId.touched && pfc.productId.errors">
+                  <span class="mtk" *ngIf="pfc.productId.errors.required">
+                    *Product Id is required</span>
+                </div>
+              </div>
+
+              <div class="form-group mb-2 col-xs-6 col-sm-3">
+                <label class="mtk" for="name">Brand Name </label>
+                <input type="text" class="form-control validate" formControlName="brandName" required />
+                <div *ngIf="pfc.brandName.touched && pfc.brandName.errors">
+                  <span class="mtk" *ngIf="pfc.brandName.errors.required" >
+                    *Name is required</span>
+                </div>
+              </div>
+
+              <div class="form-group mb-2 col-xs-6 col-sm-3">
+                <label class="mtk" for="name">Brand Model </label>
+                <input type="text" class="form-control validate" formControlName="modelName" required />
+                <div *ngIf="pfc.modelName.touched && pfc.modelName.errors">
+                  <span class="mtk" *ngIf="pfc.modelName.errors.required">
+                    *This field is required</span>
+                </div>
+              </div>
+
+              <div class="form-group mb-2 col-xs-6 col-sm-3">
+                <label class="mtk" for="name">Price </label>
+                <input type="text" class="form-control validate" formControlName="price" required />
+                <div *ngIf="pfc.price.touched && pfc.price.errors">
+                  <span class="mtk" *ngIf="pfc.price.errors.required">
+                    *Price is required</span>
+                </div>
+              </div>
+
+
+              <div class="form-group mb-3 col-xs-6 col-sm-3">
+                <label class="mtk" for="stock">Units In Stock </label>
+                <input type="text" class="form-control validate" formControlName="productAvail" required />
+                <div class="mtk" *ngIf="pfc.productAvail.touched && pfc.productAvail.errors">
+                  <span *ngIf="pfc.productAvail.errors.required" >
+                    *This field is required</span>
+                </div>
+              </div>
+
+
+
+              <div class="form-group mb-3 col-xs-6 col-sm-3">
+                <label class="mtk" for="stock">Ratings </label>
+                <input type="text" class="form-control validate" formControlName="rating" required />
+                <div *ngIf="pfc.rating.touched && pfc.rating.errors">
+                  <span class="mtk" *ngIf="pfc.rating.errors.required">
+                    *This field is required</span>
+                </div>
+              </div>
+
+
+
+              <div class="form-group mb-3 col-xs-12 col-sm-6">
+                <label class="mtk" for="description">Description</label>
+                <textarea class="form-control validate" formControlName="description" rows="2" required></textarea>
+                <div *ngIf="pfc.description.touched && pfc.description.errors">
+                  <span class="mtk" *ngIf="pfc.description.errors.required">
+                    *This field is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group mb-3">
+              <label class="mtk" for="file">Product Image</label>
+              <input formControlName="imgUrl" id="file" type="file" class="form-control" multiple="4"
+                (change)="onSelectFile($event)" enctype="multipart/form-data" />
+              <div *ngIf="pfc.imgUrl.touched && pfc.imgUrl.errors">
+                <span class="mtk" *ngIf="pfc.imgUrl.errors.required" >
+                  *Image is required</span>
+              </div>
+
+              <img *ngFor="let url of Images" [src]="url" style="margin: 5px" />
+              <br />
+            </div>
+          </div>
+
+          &nbsp;
+          <!-- [disabled]="productForm.invalid" -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block text-uppercase">
+              Add Product Now
+            </button>
+          </div>
+        </form>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

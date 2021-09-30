@@ -1,0 +1,69 @@
+<!-- <p>main-menu works!</p> -->
+<div class="mainmenu-area">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse myClass" >
+                <div class="item-shape" *ngIf="this.showHeader">
+                    <a routerLink="/cart"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="product-count"> {{cartIt}}</span></a>
+                   </div>
+                   <div class="item"> <a mat-stroked-button [matMenuTriggerFor]="menu" style="cursor: pointer;"> &nbsp; <i
+                class="fa fa-cog fa-spin"></i> <i class="fa fa-caret-down"></i></a></div>
+                <ul class="nav navbar-nav">
+                    <li><a routerLinkActive #rla="routerLinkActive" routerLink="home" >Home</a></li>
+                    <li><a routerLinkActive #rla="routerLinkActive" routerLink="shop-page">Shop page</a></li>
+                    <!-- <li><a routerLinkActive #rla="routerLinkActive" routerLink="/single-product/:id">Single product</a></li> -->
+                    <li><a routerLinkActive #rla="routerLinkActive" *ngIf="showHeader" routerLink="/cart">Cart</a></li>
+                    <li><a routerLinkActive #rla="routerLinkActive" *ngIf="showHeader" routerLink="/checkout">Checkout</a></li>
+                    <li><a routerLinkActive #rla="routerLinkActive" routerLink="/category">Category</a></li>
+                    <!-- <li><a routerLinkActive #rla="routerLinkActive" routerLink="/other">Others</a></li> -->
+                    <li><a routerLinkActive #rla="routerLinkActive" routerLink="/contact">Contact</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div> <!-- End mainmenu area -->
+      <div class="col-md-2 col-lg-2">
+        <nav id="nav-menu-container">
+          <ul class="nav-menu" style="padding-top: 9px;">
+
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/myaccount" *ngIf="showHeader"><i class="fa fa-user"></i>My Profile</button>
+              <button mat-menu-item routerLink="/wishList" *ngIf="showHeader"><i class="fa fa-heart"></i> Wishlist </button>
+              <button mat-menu-item routerLink="/cart" *ngIf="showHeader"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Cart</button>
+              <button mat-menu-item routerLink="/checkout" *ngIf="showHeader"><i class="fa fa-shopping-bag"></i>Checkout</button>
+              <button mat-menu-item routerLink="/register" *ngIf="!showHeader"><i class="fa fa-user"></i>Sign-Up</button>
+              <button mat-menu-item routerLink="/login" *ngIf="!showHeader"><i class="fa fa-user"></i>Login </button>
+              <button mat-menu-item (click)="OnLogout()" *ngIf="showHeader"> <i class="fa fa-sign-out"></i>Logout</button>
+            </mat-menu>
+
+        <!-- For  Mobile View Only -->
+        <nav id="nav-menu-containerTwo" style="display: none;">
+          <ul class="nav-menu" style="padding-top: 9px;">
+
+            <a *ngIf="showHeader" mat-stroked-button [matMenuTriggerFor]="menu" style="cursor: pointer;"><i
+                class="fa fa-cog fa-spin"></i>
+              Utilities <i class="fa fa-caret-down"></i></a>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/manage/profile">My Profile</button>
+              <button mat-menu-item routerLink="/manage/policy-board">Policy Dashboard</button>
+              <button mat-menu-item routerLink="/manage/policy-servicing">Policy Servicing</button>
+              <button mat-menu-item routerLink="/manage/leads">View Leads</button>
+              <button mat-menu-item routerLink="/manage/payout">Payout Passbook</button>
+              <button mat-menu-item routerLink="/manage/certification">POS Certification</button>
+              <button mat-menu-item routerLink="/manage/renewals">Renewals Dashboard</button>
+              <button mat-menu-item routerLink="/manage/missing-policy">Missing Policies</button>
+              <button mat-menu-item routerLink="/manage/new-products">New Products</button>
+              <button mat-menu-item (click)="OnLogout()">Logout</button>
+            </mat-menu>
+          </ul>
+        </nav><!-- #nav-menu-container -->

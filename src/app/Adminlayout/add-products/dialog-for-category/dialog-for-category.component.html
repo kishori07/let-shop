@@ -1,0 +1,32 @@
+<div class="category">
+  <button type="button" class="close" (click)="onNoClick()" data-dismiss="modal" aria-label="Close" style="
+              color: #ffffff;
+              opacity: 1;
+              margin: 0px 0px 0px 0;
+              padding: 0;
+              
+            ">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h2 style="text-align: center;"> Welcome Admin </h2>
+  <div>
+    <div class="row" style=" width: 200px; margin-left:101px;margin-bottom: 30px; ">
+      <img src="../../../../assets/img/download (3).jpg" width="250">
+    </div>
+     <h2 style="text-align: center;"> Select Product Category </h2>
+    <br>
+
+    <div class="row">
+      <div class="col-md-6">
+        <select style="width:240px; margin-left:40px;" class="mtk" class="form-control" (change)="getCat($event.target.value)" required>
+          <option value="1">Mobile </option>
+          <option value="2">Television </option>
+          <option value="3">Laptop </option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-success" (click)="onNoClick()" style="float:right;width: 90px;"> ok </button>
+      </div>
+
+
+    </div>

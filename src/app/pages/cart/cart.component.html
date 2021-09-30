@@ -1,0 +1,257 @@
+<p>cart works!</p>
+
+<div class="product-big-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-bit-title text-center">
+          <h2>Shopping Cart</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page title area -->
+<div class="single-product-area">
+  <div class="zigzag-bottom"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- <div class="single-sidebar">
+          <h2 class="sidebar-title">Search Products</h2>
+          <form action="#">
+            <input type="text" placeholder="Search products..." />
+            <input type="submit" value="Search" />
+          </form>
+        </div> -->
+
+        <div class="single-sidebar">
+          <h2 class="sidebar-title">Products</h2>
+          <div
+            class="thubmnail-recent"
+            *ngFor="let prod of allProducts | slice: 4:9; let i = index"
+          >
+            <img
+              [src]="linkImg(prod['productImage'][0])"
+              class="recent-thumb"
+              alt=""
+            />
+            <h2>
+              <a routerLink="/single-product/{{ prod._id }}"
+                >{{ prod.productBrandName }} {{ prod.productModel }}</a
+              >
+            </h2>
+            <div class="product-sidebar-price">
+              <ins>{{ "&#x20b9;" }}{{ prod.productPrice }}</ins>
+              <del
+                >{{ "&#x20b9;"
+                }}{{ (120 / 100) * prod.productPrice | number: "1.0-0" }}</del
+              >
+            </div>
+          </div>
+        </div>
+        <div class="single-sidebar">
+          <h2 class="sidebar-title">Recent Posts</h2>
+          <ul *ngFor="let prod of allProducts | slice: 6:12; let i = index">
+            <li>
+              <a routerLink="/single-product/{{ prod._id }}"
+                >{{ prod.productBrandName }} {{ prod.productModel }}
+                {{ -2021 }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="product-content-right">
+          <div class="woocommerce">
+            <form method="post" action="#">
+              <table cellspacing="0" class="shop_table cart">
+                <thead>
+                  <tr>
+                    <th class="product-remove">Remove</th>
+                    <th class="product-thumbnail">Image</th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Quantity</th>
+                    <th class="product-subtotal">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    class="cart_item"
+                    *ngFor="let details of productDetails; let i = index"
+                  >
+                    <td class="product-remove">
+                      <a
+                        title="Remove this item"
+                        class="remove"
+                        (click)="removeProduct(details['_id'])"
+                        >×</a
+                      >
+                    </td>
+
+                    <td class="product-thumbnail">
+                      <a routerLink="/single-product/{{ this.productId }}"
+                        ><img
+                          width="145"
+                          height="145"
+                          alt="poster_1_up"
+                          class="shop_thumbnail"
+                          img
+                          [src]="linkImg(details['productImage'][0])"
+                          alt=""
+                      /></a>
+                    </td>
+
+                    <td class="product-name">
+                      <a routerLink="/single-product"
+                        >{{ details["productBrandName"] }}
+                        {{ details["productModel"] }}</a
+                      >
+                    </td>
+
+                    <td class="product-price">
+                      <ins>{{ "&#x20b9;" }}{{ details["productPrice"] }}</ins>
+                    </td>
+
+                    <td class="product-quantity">
+                      <div class="quantity buttons_added">
+                        <!-- <input type="button" class="minus" value="-"> -->
+                        <input
+                          type="number"
+                          size="4"
+                          class="input-text qty text"
+                          title="Qty"
+                          [value]="cartIt[i].quan"
+                          (input)="quan($event.target.value, details['_id'])"
+                          min="1"
+                          step="1"
+                        />
+                        <!-- <input type="button" class="plus" value="+"> -->
+                      </div>
+                    </td>
+
+                    <td class="product-subtotal">
+                      <ins
+                        >{{ "&#x20b9;"
+                        }}{{ details["productPrice"] * cartIt[i].quan }}
+                      </ins>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="actions" colspan="6">
+                      <div class="coupon">
+                        <label for="coupon_code">Coupon:</label>
+                        <input
+                          type="text"
+                          placeholder="Coupon code"
+                          value=""
+                          id="coupon_code"
+                          class="input-text"
+                          name="coupon_code"
+                        />
+                        <input
+                          type="submit"
+                          value="Apply Coupon"
+                          name="apply_coupon"
+                          class="button"
+                        />
+                      </div>
+                      <input
+                        type="submit"
+                        value="Update Cart"
+                        name="update_cart"
+                        class="button"
+                      />
+                      <input
+                        type="submit"
+                        value="Checkout"
+                        name="proceed"
+                        class="checkout-button button alt wc-forward"
+                        (click)="checkOut()"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+            
+              <div class="cart_totals">
+              <h2 class="cardhead">Cart Totals</h2>
+
+              <table cellspacing="0">
+                <tbody>
+                  <tr class="cart-subtotal" *ngFor="let details of productDetails; let i=index" >
+                    <th>{{details["productBrandName"]}}</th>
+                    <td><span class="amount"><ins
+                        >{{ "&#x20b9;"
+                        }}{{ details["productPrice"] * cartIt[i].quan }}
+                      </ins></span></td>
+                  </tr>
+
+                  <tr class="shipping">
+                    <th>Shipping and Handling</th>
+                    <td>Free Shipping</td>
+                  </tr>
+
+                  <tr class="order-total">
+                    <th>Order Total</th>
+                    <td>
+                      <strong><span class="amount"><ins
+                        >{{ "&#x20b9;"
+                        }}{{this.amt}}
+                      </ins></span></strong>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="cart-collaterals">
+              <div class="cross-sells">
+                <h2>You may be interested in...</h2>
+                <div class="products" >
+                  <div
+                    class="product"
+                    *ngFor="let prod of allProducts | slice: 6:9; let i = index"
+                  >
+                    <a routerLink="/single-product/{{ prod._id }}">
+                      <img
+                        width="250"
+                        height="240"
+                        alt="T_4_front"
+                        class="img-thumbnail"
+                        [src]="linkImg(prod['productImage'][0])"
+                      />
+                    </a>
+                    <h3>Ship Your Idea</h3>
+                    <span class="price">
+                      <ins>{{ "&#x20b9;" }}{{ prod.productPrice }}</ins>
+                    </span>
+                    <a
+                      class="add_to_cart_button"
+                      data-quantity="1"
+                      data-product_sku=""
+                      data-product_id="22"
+                      rel="nofollow"
+                      routerLink="/single-product/{{ prod._id }}"
+                      >Select options</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Spinner Loader -->
+<div class="spinloader" *ngIf="show">
+  <mat-spinner></mat-spinner>
+</div>

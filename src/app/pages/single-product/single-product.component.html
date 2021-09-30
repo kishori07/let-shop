@@ -1,0 +1,266 @@
+<p>single-product works!</p>
+
+<div class="product-big-title-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-bit-title text-center">
+          <h2>Shop</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="single-product-area">
+  <div class="zigzag-bottom"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-right">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="mySlides">
+                <div class="numbertext"></div>
+                <img [src]="linkImg(img)" class="imgThumb">
+              </div>
+              <div>
+                <p style="text-align: center; font-weight: bold;"> Gallary </p>
+              </div>
+              <div class="row">
+                <div class="col-sm-2" *ngFor="let prod of imageOdProd ; let i=index ">
+                  <img img [src]="linkImg(prod)"
+                    style="border: 2px solid #5a88ca; border-radius: 5px; height:60px; width:70px " alt=""
+                    (click)="onTab(prod)" />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 col-md-3 bod">
+              <div class="product-inner">
+                <h2 class="product-name">
+                  {{ productDetails["productBrandName"] }}
+                  {{ productDetails["productModel"] }} {{ "- 2021" }}
+                </h2>
+
+                <div class="product-inner-price">
+                  <ins>{{ "&#x20b9;" }}{{ productDetails["productPrice"] }}</ins>
+                  <del>{{ "&#x20b9;"
+                    }}{{ (120 / 100) * productDetails["productPrice"] | number: "1.0-0" }}</del>
+                </div>
+                <form action="" class="cart">
+
+                  <div class="quantity">
+                    <label> Quantity </label> &nbsp;
+                    <input type="number" size="4" class="input-text qty text" title="Qty" [formControl]="quantity"
+                      min="1" step="1" />
+                    <span *ngIf=" quantity.touched && quantity.errors" class="text-danger"> This field is
+                      required</span>
+                  </div>
+
+                  <button [disabled]="quantity.invalid" type="button" class="add_to_cart_button" (click)="addCart()">
+                    Add to cart
+                  </button>
+                </form>
+
+                <div class="product-inner-category">
+                  <p>
+                    Category: <a href="#">Mobile </a>. Tags:
+                    <a href="">awesome</a>, <a href="#">best</a>,
+                    <a href="">sale</a>, <a href="#">shoes</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5">
+              <div role="tabpanel">
+                <ul class="product-tab" role="tablist">
+                  <li role="presentation" class="active" style="width:150px; margin-left: 10px; ">
+                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a>
+                  </li>
+                  <li role="presentation" style="width:150px ; margin-left: 0;">
+                    <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane fade in active" id="home">
+                    <h2 >Product Description</h2>
+                    <!-- <p>{{ productDetails["Description"] }}</p> -->
+                    <div>
+                      {{(readMore) ? productDetails["Description"] : productDetails["Description"] | slice:0:450}} <span
+                        *ngIf="!readMore">...</span>
+                      <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">[Read More]</a>
+                    </div>
+
+                  </div>
+                  <div role="tabpanel" class="tab-pane fade" id="profile">
+                    <h2>Reviews</h2>
+                    <div class="submit-review">
+                      <p>
+                        <label for="name">Name</label>
+                        <input name="name" type="text" />
+                      </p>
+                      <p>
+                        <label for="email">Email</label>
+                        <input name="email" type="email" />
+                      </p>
+                      <div class="rating-chooser">
+                        <p>Your rating</p>
+
+                        <div class="rating-wrap-post">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                        </div>
+                      </div>
+                      <p>
+                        <label for="review">Your review</label>
+                        <textarea name="review" id="" cols="30" rows="10"></textarea>
+                      </p>
+                      <p><input type="submit" value="Submit" /></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:40px;">
+      <div class="col-md-4">
+        <h2 class="spec1">Products</h2>
+        <div class="row ">
+          <div class="single-sidebar" style="margin:30px;">
+            <div class="thubmnail-recent" *ngFor="let ap of allProductDetails | slice:0:4; let i=index">
+              <img img [src]="linkImg(ap['productImage'][0])" class="recent-thumb" alt="" />
+
+              <h2>
+                <a routerLink="/single-product/{{ ap['_id'] }}">{{ ap["productBrandName"] }} {{ ap["productModel"]
+                  }}{{ "-2021" }}</a>
+              </h2>
+              <div class="product-sidebar-price">
+                <ins>{{ "&#x20b9;" }} {{ ap["productPrice"] }}</ins>
+                <del>{{ "&#x20b9;" }} {{(120 / 100) * ap["productPrice"] | number: "1.0-0" }} </del>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="single-sidebar">
+          <div class="row">
+            <h2 class="spec1">Recent Posts</h2>
+            <ul  style="list-style: none;" *ngFor="let prod of allProductDetails | slice:0:8; let i=index">
+              <span style="font: large;"><a routerLink="/single-product/{{ prod._id }}">{{prod.productBrandName}} {{prod.productModel}}
+                  {{- 2021}}</a></span>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 spec">
+        <h2 style="margin-top: 5px;" class="sss">Specification</h2>
+        <ul style="list-style: none;" *ngFor="let sp of specifi" class="sc">
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> General</li>
+          <li>Brand <span style="float: right;">{{sp["general"].brand}}</span></li>
+          <li>Model <span style="float: right;">{{sp["general"].model}}</span></li>
+          <li>Price In India <span style="float: right;">{{sp["general"].priceInIndia}}</span></li>
+          <li>Release Date <span style="float: right;">{{sp["general"].releaseDate}}</span></li>
+          <li>Form Factor <span style="float: right;">{{sp["general"].formFactor}}</span></li>
+          <li>Dimension <span style="float: right;">{{sp["general"].dimension}}</span></li>
+          <li>Weight <span style="float: right;">{{sp["general"].weight}}</span></li>
+          <li>Battery Capacity <span style="float: right;">{{sp["general"].batteryCapacity}}</span></li>
+          <li>Wireless Charging <span style="float: right;">{{sp["general"].wirelessCharging}}</span> </li>
+        <!-- </ul> -->
+        &nbsp;
+         <!-- <ul style="list-style: none;" *ngFor="let sp of specifi"> -->
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Display </li>
+          <li>Resolution <span style="float: right;">{{sp["display"].resolution}}</span></li>
+          <li>ScreenSize <span style="float: right;">{{sp["display"].screenSize}}</span></li>
+          <li>TouchScreen <span style="float: right;">{{sp["display"].touchScreen}}</span></li>
+          &nbsp;
+
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Hardware </li>
+          <li>Processor <span style="float: right;">{{sp["hardware"].processor}}</span></li>
+          <li>Processor Make <span style="float: right;">{{sp["hardware"].processorMake}}</span></li>
+          <li>RAM <span style="float: right;">{{sp["hardware"].ram}}</span></li>
+          <li>Internal Storage <span style="float: right;">{{sp["hardware"].internalStorage}}</span></li>
+          <li>Expandable Storage <span style="float: right;">{{sp["hardware"].expandableStorage}}</span></li>
+          <li>Expandable Type <span style="float: right;">{{sp["hardware"].expandableType}}</span> </li>
+          <li>Dedicated MicroSD slot<span style="float: right;">{{sp["hardware"].dedicatedMicroSDslot}}</span> </li>
+          &nbsp;
+
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Camera </li>
+          <li>Rear Camera <span style="float: right;"><li style="font-size: small;">{{sp["camera"].rearCamera}}</li></span></li>
+          <li>No. of Rear Camera <span style="float: right;">{{sp["camera"].noOfRearCam}}</span></li>
+          <li>Rear Autofocus <span style="float: right;">{{sp["camera"].rearAutofocus}}</span></li>
+          <li>Rear Flash <span style="float: right;">{{sp["camera"].rearFlash}}</span></li>
+          <li>Front Camera <span style="float: right;">{{sp["camera"].frontCamera}}</span></li>
+          <li>No. of Front Camera <span style="float: right;">{{sp["camera"].npOfFrontCamera}}</span> </li>
+          <li>Pop-Up Camera <span style="float: right;">{{sp["camera"].popUpCamera}}</span> </li>
+            &nbsp;
+
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Software </li>
+          <li>Operating System <span style="float: right;"><li style="font-size: small;">{{sp["software"].Op}}</li></span></li>
+          <li>Skin <span style="float: right;">{{sp["software"].skin}}</span></li>
+           &nbsp;
+
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Connectivity </li>
+          <li>Wifi <span style="float: right;">{{sp["connectivity"].wifi}}</span></li>
+          <li>GPS <span style="float: right;">{{sp["connectivity"].gps}}</span></li>
+          <li>Bluetooth <span style="float: right;">{{sp["connectivity"].bT}}</span></li>
+          <li>USB Type <span style="float: right;">{{sp["connectivity"].usbType}}</span> </li>
+          <li>Micro USB <span style="float: right;">{{sp["connectivity"].microUSb}}</span> </li>
+          <li>Lighting <span style="float: right;">{{sp["connectivity"].lighting}}</span></li>
+          <li>HeadPhones <span style="float: right;">{{sp["connectivity"].headphones}}</span></li>
+          <li>No. of Sims <span style="float: right;">{{sp["connectivity"].noOfSims}}</span></li>
+          <li>Active 4G on both SIM cards <span style="float: right;">{{sp["connectivity"].Active4gOnBothSim}}</span> </li>
+          <li>Sim Type <span style="float: right;">{{sp["connectivity"].simType}}</span> </li>
+       &nbsp;
+         <!-- <ul style="list-style: none;" *ngFor="let sp of specifi"> -->
+          <li style="margin-left: 55px; font-style: italic; font-size: large;"> Sensors </li>
+          <li>In display fingerprint sensor <span style="float: right;">{{sp["sensors"].fingerPrintSensor}}</span></li>
+          <li>Proximity Sensor <span style="float: right;">{{sp["sensors"].proximitySensor}}</span></li>
+          <li>Accelerometer <span style="float: right;">{{sp["sensors"].accelerometer}}</span></li>
+          <li>Ambient Light Sensor <span style="float: right;">{{sp["sensors"].ambientLight}}</span></li>
+          <li>GyroScope <span style="float: right;">{{sp["sensors"].gyroscope}}</span></li>
+          &nbsp;
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Please do SignUp for adding product to cart & if already have an
+          account then please Login to further proceed.
+        </p>
+        <p>ThankYou !</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+        <a class="btn btn-primary" routerLinkActive #rla="routerLinkActive" routerLink="/login">
+          SignUp/LogIn
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button type="button" class="btn btn-info btn-lg" (click)="openModel()">Open Login Modal Dialog!</button>
+<div class="backdrop" [ngStyle]="{'display':display}"></div> -->
+
+<!-- modal -->

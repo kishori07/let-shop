@@ -1,0 +1,58 @@
+.bdy{
+    height: 100%;
+    width: 100%;
+    background-image: url("../../../assets/img/bg.jpg");	
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container{
+   margin: 100px;
+   top: 0;
+   bottom: 0;
+    /* border: 2px solid #fff;
+    -webkit-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.2); */
+}
+.avatar-upload .avatar-preview {
+    width:  150px;
+    height: 200px;
+    float:left;
+    /* border-radius: 100%; */
+    border: 2px solid #fff;
+    -webkit-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.2);
+
+  }
+ img{
+  width: 150px;
+  height: 200px;
+  background-size: cover;
+   border: 2px solid #000;
+ }
+ .modal.fade .modal-dialog {
+    transform: translate(0,-25%);
+    transition: transform .3s ease-out;
+    width: 83%;
+    margin-top: 100px;
+    height:auto;
+}
+.materila-card {
+  display: block;
+  box-shadow: 0px 7px 13px -5px #cecece;
+  border-radius: 5px;
+
+}
+.mat-horizontal-stepper-header-container {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    background-color: brown;
+}
+
+.mtk{
+  color: #fff;
+  font-weight: lighter;
+}

@@ -1,0 +1,53 @@
+footer{
+    position: relative;
+    bottom: 0;
+}
+.example-container {
+  /* width: 500px;
+  height: 300px; */
+ 
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.example-sidenav {
+  padding: 20px;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+.liDesign{
+  border:1px solid #fff; 
+  padding:5px;
+  text-decoration: none;
+  color:#111;
+  font-size: large;
+  margin : 5px 0;
+  border-radius: 5px;
+  background: #fff;
+  text-align:center;
+
+}
+.liDesign a{
+  color: #111;
+}
+.liDesign a:hover{
+  color: #111;
+  text-decoration: none;
+}
+.boxContainer{
+  width: 250px;
+    margin-left: 138px;
+
+}

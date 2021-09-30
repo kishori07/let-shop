@@ -1,0 +1,39 @@
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="box col-lg-2 col-lg-offset-4 col-md-offset-2 col-md-3" style="margin-top: 100px">
+        <div class="block-unit" style="text-align: center; padding: 8px 8px 8px 8px">
+          <img src="../../../assets/utility/images/face80x80.jpg" alt="" class="img-circle" />
+          <br />
+          <br />
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <fieldset>             
+                <input type="email" class="form-control"  formControlName="email" maxlength="50"
+                  placeholder="Email Id" />
+                <div *ngIf="sfc.email.touched && sfc.email.errors" class="text-danger">
+                  <span *ngIf="sfc.email.required">Username is required </span>
+
+                  <span *ngIf="sfc.email.errors.email" class="text-danger">
+                    Invalid Email Id
+                  </span>
+                </div>
+
+                &nbsp;
+
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                <div *ngIf="sfc.password.touched && sfc.password.errors" class="text-danger">
+                  Password is required
+                </div>
+                &nbsp;
+
+                <button class="submit btn-success btn btn-large" type="submit" value="Login" [disabled]="!signUpForm.valid">
+                  Login
+                </button>
+                
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
