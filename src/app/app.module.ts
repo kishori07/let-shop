@@ -25,9 +25,9 @@ import { NgxStripeModule } from 'ngx-stripe';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    UserModule,
-    AdminLayoutModule,
 
+    AdminLayoutModule,
+    UserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxStripeModule.forRoot(

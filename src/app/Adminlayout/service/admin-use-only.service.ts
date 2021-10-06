@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -11,9 +12,9 @@ import { adminModal, productModal } from '../models/adminUser.model';
 @Injectable({
   providedIn: 'root',
 })
-  
+
 export class AdminUseOnlyService {
-  public BaseUrl = 'http://localhost:3000/';
+  public apiUrl =environment.apiUrl ;
 
   constructor(private http: HttpClient) {}
 
@@ -37,8 +38,8 @@ export class AdminUseOnlyService {
     formData.append('cpassword', UserInfo.cpassword);
     formData.append('imgUrl', UserInfo.imgUrl);
 
-    
-    const url = this.BaseUrl + `admin/add-admin`;
+
+    const url = this.apiUrl + `admin/add-admin`;
     return this.http.post<{
       name: string;
       address: string;
@@ -50,19 +51,19 @@ export class AdminUseOnlyService {
     }>(url, formData);
   }
   findAdminByEmailId(user): Observable<adminModal> {
-    const Url = this.BaseUrl + `admin/getAdminByEmail`;
+    const Url = this.apiUrl + `admin/getAdminByEmail`;
     return this.http.post<adminModal>(Url, user);
   }
   addProducts(product){
-    const Url = this.BaseUrl + `admin/add-products`;
+    const Url = this.apiUrl + `admin/add-products`;
     return this.http.post<productModal>(Url,product);
   }
   addSpecification(dataOfallForms) {
-    const Url = this.BaseUrl + `admin/addprodSpec`;
+    const Url = this.apiUrl + `admin/addprodSpec`;
     return this.http.post(Url, dataOfallForms);
   }
   getProductSpecification(id) {
-    const Url = this.BaseUrl + `admin/getProdSpec/${id}`;
+    const Url = this.apiUrl + `admin/getProdSpec/${id}`;
     return this.http.get(Url);
   }
 }

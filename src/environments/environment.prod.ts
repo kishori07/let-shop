@@ -4,14 +4,17 @@ export const environment = {
 
 
 
-  // baseUrl: 'http://localhost:4200/',
-  // apiUrl: 'http://localhost:4200/api/'
-
   baseUrl: 'http://192.168.100.58:4200/',
-  apiUrl: 'http://192.168.100.58:4200/api/'
+  apiUrl: 'http://192.168.100.58:3000/'
 
-  // baseUrl: 'http://192.168.100.'
-  // apiUrl: 'http://192.168'
+   // baseUrl : 'http://192.168.100.58:4200/'
+  // apiUrl : 'http://localhost:3000/'
+
+  // baseUrl: 'http://192.168.100.58:4200/',
+  // apiUrl: 'http://192.168.100.58:4200/api/'
+
+  // baseUrl: 'https://kishori07.github.io/let-shop',
+  // apiUrl :''
 
 };
 

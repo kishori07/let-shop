@@ -4,6 +4,7 @@ const path = require("path");
 const { checkout } = require("../routes/user");
 const app = express();
 const YOUR_DOMAIN = "http://localhost:4200";
+// const YOUR_DOMAIN = 'https://kishori07.github.io/let-shop'
 var Secret_Key =
     "sk_test_51JI4zdSJvdpyLvMGkFDxxzIJhpyv0MAKTKIenw9uMvuRABeK1FYMFFDex2nRzixQ1HklxXuSPgyJZZHj1Qh3DBoW00HcNkoTT8";
 const stripe = require("stripe")(Secret_Key);

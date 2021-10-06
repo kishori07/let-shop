@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { observable, Observable, Subject } from 'rxjs';
@@ -10,36 +11,37 @@ import { switchMap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ShopServiceService {
-  public basicUrl = 'http://localhost:3000/';
+
+  public apiUrl = environment.apiUrl;
   public actionListener = new Subject<boolean>();
 
   constructor(private http: HttpClient,private stripeService: StripeService) { }
 
   addUsers(User): Observable<UserModal> {
-    const Url = this.basicUrl + `user/add-user`;
+    const Url = this.apiUrl + `user/add-user`;
     return this.http.post<UserModal>(Url, User);
   }
 
   findUserByEmailId(user): Observable<UserModal> {
-    const Url = this.basicUrl + `user/getUserByEmail`;
+    const Url = this.apiUrl + `user/getUserByEmail`;
     return this.http.post<UserModal>(Url, user)
 
   }
   getUserById(id) {
-    const Url = this.basicUrl + `user/getUserById/${id}`;
+    const Url = this.apiUrl + `user/getUserById/${id}`;
     return this.http.get(Url);
   }
 
   getImages() {
-    const Url = this.basicUrl + `images`;
+    const Url = this.apiUrl + `images`;
     return this.http.get(Url);
   }
   linkImg(fileName) {
     // base_URL returns localhost:3000 or the production URL
-    return `${this.basicUrl}/uploads/${fileName}`;
+    return `${this.apiUrl}/uploads/${fileName}`;
   }
   findAllProducts() {
-    const Url = this.basicUrl + `admin/getAllProducts`;
+    const Url = this.apiUrl + `admin/getAllProducts`;
     return this.http.get(Url);
   }
 
@@ -49,17 +51,17 @@ export class ShopServiceService {
     return token == " " || token == null ? false : true;
   }
   getProductById(id) {
-    const Url = this.basicUrl + `admin/getProductById/${id}`;
+    const Url = this.apiUrl + `admin/getProductById/${id}`;
     return this.http.get(Url);
   }
   getAllProducts() {
-    const Url = this.basicUrl + `admin/getAllProducts`;
+    const Url = this.apiUrl + `admin/getAllProducts`;
     return this.http.get(Url);
   }
 
   addCartItem({ productId: productId, id: userId, quantity: quant }) {
 
-    const Url = this.basicUrl + `user/addCartToUser`;
+    const Url = this.apiUrl + `user/addCartToUser`;
     return this.http.put(Url, { productId: productId, id: userId, quantity: quant });
   }
 
@@ -71,18 +73,18 @@ export class ShopServiceService {
   }),
   body: CartItem,
 };
-    const Url = this.basicUrl + `user/removeCartItem`;
+    const Url = this.apiUrl + `user/removeCartItem`;
     return this.http.delete(Url, options);
   }
 
   updateQuantity(CartItem) {
-    const Url = this.basicUrl + `user/updateQuantity`;
+    const Url = this.apiUrl + `user/updateQuantity`;
     return this.http.put(Url,CartItem)
 
   }
    checkout(products) {
     // Check the server.js tab to see an example implementation
-     const Url = this.basicUrl + `user/api/payment`;
+     const Url = this.apiUrl + `user/api/payment`;
     this.http.post(Url,products)
       .pipe(
         switchMap(session => {
@@ -103,7 +105,7 @@ export class ShopServiceService {
       });
    }
   afterPayment(){
-    const Url = this.basicUrl + `user/webhook`;
+    const Url = this.apiUrl + `user/webhook`;
      return this.http.post(Url,{})
   }
 }
