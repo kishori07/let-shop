@@ -10,7 +10,7 @@ import { AdminLayoutComponent } from './admin-layout.component';
 
 const adminRoutes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
       { path: '', redirectTo: 'adminHome', pathMatch: 'full' },

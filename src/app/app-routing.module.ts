@@ -1,4 +1,4 @@
-import { UsersComponent } from './user/users.component';
+// import { UsersComponent } from './user/users.component'
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { HomeComponent } from './pages/home/home.component';
@@ -6,13 +6,14 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 
 
 const routes: Routes = [
+  // {path: '', redirectTo: '/'},
   {
     path: 'user',
     loadChildren: () => import('./user/user-routing.module').then(m => m.UserRoutingModule),
     // data: { preload: true }
   },
   {
-    path: 'admin-layout',
+    path: 'admin',
     loadChildren: () => import('./admin-layout/admin-layout.module').then(m => m.AdminLayoutModule),
     // canLoad: [AuthGuard]
   },
